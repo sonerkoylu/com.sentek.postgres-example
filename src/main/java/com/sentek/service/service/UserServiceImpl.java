@@ -5,6 +5,8 @@ import com.sentek.service.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -13,5 +15,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUserNameAndPassword(String username, String password) {
         return userRepository.findByUsernameAndPassword(username, password);
+    }
+
+    @Override
+    public List<User> getAllByUsernameNotNull() {
+        return userRepository.getAllByUsernameNotNull();
     }
 }

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/api/v1/users")
 public class UserController {
@@ -17,5 +19,10 @@ public class UserController {
     @GetMapping("/user")
     public User login(@RequestParam("username") String username, @RequestParam("password") String password) {
         return userService.findByUserNameAndPassword(username,password);
+    }
+
+    @GetMapping
+    public List<User> getUsersByUsernameNotNull(){
+        return userService.getAllByUsernameNotNull();
     }
 }
