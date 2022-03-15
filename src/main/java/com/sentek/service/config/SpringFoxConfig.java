@@ -1,4 +1,4 @@
-package com.sentek.service.util;
+package com.sentek.service.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

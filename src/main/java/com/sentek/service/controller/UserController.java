@@ -1,12 +1,10 @@
 package com.sentek.service.controller;
 
+import com.sentek.service.dto.UserDto;
 import com.sentek.service.entity.User;
 import com.sentek.service.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,12 +15,17 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/user")
-    public User login(@RequestParam("username") String username, @RequestParam("password") String password) {
+    public UserDto login(@RequestParam("username") String username, @RequestParam("password") String password) {
         return userService.findByUserNameAndPassword(username,password);
     }
 
     @GetMapping
-    public List<User> getUsersByUsernameNotNull(){
+    public List<UserDto> getUsersByUsernameNotNull(){
         return userService.getAllByUsernameNotNull();
+    }
+
+    @PostMapping("/create")
+    public UserDto createUser(@RequestBody UserDto userDto) {
+        return userService.save(userDto);
     }
 }
